@@ -5,7 +5,7 @@ import java.util
   *
   * @author evanslov
   */
-object Mergesort extends App with Checker {
+object HeapSort extends App with Checker {
   class Heap {
     private var arr = new util.ArrayList[Int]()
 

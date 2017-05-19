@@ -32,7 +32,7 @@ trait Checker {
     out.toString
   }
 
-  def generate(n: Int, maxValue: Int = 15): Array[Int] = {
+  def generate(n: Int, maxValue: Int = 1000): Array[Int] = {
     val arr = new Array[Int](n)
     0.until(n).foreach(i => arr(i) = Random.nextInt(maxValue))
     arr

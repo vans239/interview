@@ -18,7 +18,7 @@ object KmpFind extends App with Checker {
         pr(i) = 0
         i += 1
       } else {
-        k = pr(k - 1)
+        k = pr(k - 1) //todo i think that there is a bug here.
       }
     }
     pr
