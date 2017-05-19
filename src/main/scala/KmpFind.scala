@@ -5,42 +5,53 @@
   */
 object KmpFind extends App with Checker {
   def prepare(template: String): Array[Int] = {
-    var curr = 1
-    var transi = 0
-    val trans = new Array[Int](template.length)
-    trans(0) = 0
-    while (curr < template.length) {
-      if (template(curr) == template(transi)) {
-        transi += 1
+    val pr = new Array[Int](template.length)
+    pr(0) = 0
+    var k = 0
+    var i = 1
+    while (i < template.length) {
+      if (template(i) == template(k)) {
+        k += 1
+        pr(i) = k
+        i += 1
+      } else if (k == 0) {
+        pr(i) = 0
+        i += 1
       } else {
-        transi = 0
+        k = pr(k - 1)
       }
-      trans(curr) = transi
-      curr += 1
     }
-    trans
+    pr
   }
 
   def find(text: String, s: String): Int = {
-    val trans = prepare(s)
+    val pr = prepare(s)
     var i = 0
-    var transi = 0
-    while (i < s.length && transi < trans.length) {
-      if (s(i) == text(i)) {
-        transi += 1
+    var k = 0
+    while (k < s.length && i < text.length) {
+      if (s(k) == text(i)) {
+        k += 1
+        i += 1
+      } else if (k == 0) {
+        i += 1
       } else {
-        transi = trans(transi)
+        k = pr(k - 1)
       }
-      i += 1
     }
 
-    if (transi == trans.length) {
-      i
+    if (k == s.length) {
+      i - s.length
     } else {
       -1
     }
   }
 
-  printArr(prepare("zazabaza"))
-  printArr(prepare("ctgcctag"))
+  shouldEqual(prepare("zazabaza").mkString(""), "00120012")
+  shouldEqual(prepare("ctgcctag").mkString(""), "00011200")
+  shouldEqual(prepare("abcdabcabcdabcdab").mkString(""), "00001231234567456")
+
+  shouldEqual(find("ctgcctag", "ctg"), 0)
+  shouldEqual(find("ctgcctag", "ctga"), -1)
+  println(find("abcdabcabcdabcdab", "cabcdabcdab"))
+  shouldEqual(find("abcdabcabcdabcdab", "cabcdabcdab"), 6)
 }
