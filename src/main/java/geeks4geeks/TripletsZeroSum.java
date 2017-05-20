@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * Created by KatKat on 20/05/17.
  */
+//http://practice.geeksforgeeks.org/problems/find-triplets-with-zero-sum
 public class TripletsZeroSum {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
