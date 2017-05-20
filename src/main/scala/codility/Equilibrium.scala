@@ -8,8 +8,8 @@ import scala.collection.JavaConverters._
 //Find an index in an array such that its prefix sum equals its suffix sum.
 object Equilibrium {
   def solution(a: Array[Int]): Int = {
-    val total = a.sum
-    var curr = 0
+    val total = a.map(_.toLong).sum
+    var curr = 0l
     var i = 0
     var found = false
     while (i < a.length && !found) {
