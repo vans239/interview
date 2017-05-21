@@ -55,4 +55,9 @@ object BattleShips extends App {
   shouldEqual(solution(5, "1B 1B", "1B"), "1,0")
   shouldEqual(solution(5, "1A 2C", "1A 1B 1C 2A 2B 2C"), "1,0")
   shouldEqual(solution(5, "1A 2C,3C 3C", "1A 1B 1C 2A 2B"), "0,1")
+
+  shouldEqual(solution(4, "1B 2C,2D 4D", "2B 2D 3D 4D 4A"), "1,1")
+  shouldEqual(solution(10, "1A 2B,5D 7D", "1A 2A 2B 4D 1B"), "1,0")
+  shouldEqual(solution(10, "1A 2B,5D 7D", "3A 7C 2E 4D 8C"), "0,0")
+
 }

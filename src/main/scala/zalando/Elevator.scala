@@ -19,15 +19,13 @@ object Elevator extends App {
     if (weights.isEmpty) {
       accumulator
     } else {
-      //todo in worst case it is O(n^2) (maxCapacity: 1, maxWeight: Infinity)
-      val canTakeWeight =
+      val willBeProcessed =
         weights.view
+          .take(maxCapacity)
           .scanLeft(0) { case (curr, weight) => curr + weight}
           .zipWithIndex
           .takeWhile { case (total, _ ) => total <= maxWeight}
           .last._2
-      val canTakeCapacity = maxCapacity
-      val willBeProcessed = math.min(canTakeCapacity, canTakeWeight)
 
       val floorVisits = targets.take(willBeProcessed).toSet.size + 1
       doSolution(
