@@ -31,9 +31,9 @@ object BattleShips extends App {
       Ship(parsePoint(topLeftStr), parsePoint(bottomRightStr))
     }
 
-    def parseShips(shipsStr: String) = shipsStr.split(',').map(parseShip)
+    def parseShips(shipsStr: String) = shipsStr.split(',').filter(! _.isEmpty).map(parseShip)
 
-    def parseHits(hitsStr: String) = hitsStr.split(' ').map(parsePoint)
+    def parseHits(hitsStr: String) = hitsStr.split(' ').filter(! _.isEmpty).map(parsePoint)
 
     def isSunk(s: Ship, hits: Set[Point]): Boolean = s.cells.forall(hits.contains)
 
@@ -59,5 +59,9 @@ object BattleShips extends App {
   shouldEqual(solution(4, "1B 2C,2D 4D", "2B 2D 3D 4D 4A"), "1,1")
   shouldEqual(solution(10, "1A 2B,5D 7D", "1A 2A 2B 4D 1B"), "1,0")
   shouldEqual(solution(10, "1A 2B,5D 7D", "3A 7C 2E 4D 8C"), "0,0")
+
+  shouldEqual(solution(1, "1A 1A", ""), "0,0")
+  shouldEqual(solution(1, "1A 1A", "1A"), "1,0")
+  shouldEqual(solution(1, "", "1A"), "0,0")
 
 }
