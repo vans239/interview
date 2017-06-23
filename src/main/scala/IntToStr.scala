@@ -26,4 +26,27 @@ object IntToStr extends Checker with App {
   shouldEqual(intToStr(123456), "123456")
   shouldEqual(intToStr(Int.MinValue), Int.MinValue.toString)
   shouldEqual(intToStr(0), "0")
+
+  def strToInt(str: String): Int = {
+    var i = 0
+    var curr = 0
+    var multiplier = 1
+
+    if (str.charAt(0) == '-') {
+      multiplier = -1
+      i += 1
+    }
+
+    while (i < str.length) {
+      curr = curr * 10 + str.charAt(i).-('0')
+      i += 1
+    }
+    curr * multiplier
+  }
+
+  shouldEqual(strToInt("1"), 1)
+  shouldEqual(strToInt("0"), 0)
+  shouldEqual(strToInt("-1"), -1)
+  shouldEqual(strToInt("-1234567"), -1234567)
+  shouldEqual(strToInt("1234567"), 1234567)
 }
